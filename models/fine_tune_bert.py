@@ -128,3 +128,10 @@ with torch.no_grad():
 
 # Evaluate predictions using custom MBTI metrics
 mbti_accuracies(y_test, all_preds)
+
+
+model_dir = project_root / "models" / "bert_multilabel"
+model_dir.mkdir(parents=True, exist_ok=True)
+
+model.save_pretrained(model_dir)
+tokenizer.save_pretrained(model_dir)

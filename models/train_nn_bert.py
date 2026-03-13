@@ -158,3 +158,9 @@ with torch.no_grad():
 
 # Evaluate using MBTI accuracy metrics
 mbti_accuracies(y_test, all_preds)
+
+
+model_dir = project_root / "models"
+model_dir.mkdir(parents=True, exist_ok=True)
+
+torch.save(model.state_dict(), model_dir / "bert_embeddings_mlp.pt")

@@ -169,3 +169,10 @@ list_labels = [sample['output'].lower() for sample in formatted_test]
 
 # Evaluate predictions
 mbti_accuracies(list_labels, list_preds)
+
+
+model_dir = project_root / "models" / "mistral_lora_mbti"
+model_dir.mkdir(parents=True, exist_ok=True)
+
+peft_model.save_pretrained(model_dir)
+tokenizer.save_pretrained(model_dir)
