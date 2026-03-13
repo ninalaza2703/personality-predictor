@@ -5,38 +5,38 @@ It includes a full pipeline for scraping Reddit data, building a labeled dataset
 
 ---
 
-# Project Structure
+## Project Structure
 
+```
 personality-predictor/
-│
 ├── data_pipeline/
-│ ├── build_reddit_dataset.py
-│ ├── extract_bert_embeddings.py
-│ ├── process_data.py
-│ ├── scrape_reddit.py
-│ └── scrape_reddit_pullpush.py
+│   ├── build_reddit_dataset.py
+│   ├── extract_bert_embeddings.py
+│   ├── process_data.py
+│   ├── scrape_reddit.py
+│   └── scrape_reddit_pullpush.py
 │
 ├── models/
-│ ├── deberta_tuning.py
-│ ├── deberta_tuning_optuna.py
-│ ├── eval.py
-│ ├── fine_tune_bert.py
-│ ├── fine_tune_Mistral.py
-│ ├── train_nn_bert.py
-│ ├── train_tfidf_xgboost.py
-│ └── utils.py
+│   ├── deberta_tuning.py
+│   ├── deberta_tuning_optuna.py
+│   ├── eval.py
+│   ├── fine_tune_bert.py
+│   ├── fine_tune_Mistral.py
+│   ├── train_nn_bert.py
+│   ├── train_tfidf_xgboost.py
+│   └── utils.py
 │
 ├── notebooks/
-│ ├── deberta_tuning.ipynb
-│ ├── deberta_tuning_optuna.ipynb
-│ └── tfidf_experiments.ipynb
+│   ├── deberta_tuning.ipynb
+│   ├── deberta_tuning_optuna.ipynb
+│   └── tfidf_experiments.ipynb
 │
 ├── README.md
 └── requirements.txt
+```
 
 
-
-The **notebooks directory contains exploratory experiments** used during development.  
+The **notebooks** directory contains exploratory experiments used during development.  
 The **main reproducible pipeline** is implemented in the `data_pipeline` and `models` directories.
 
 ---
@@ -57,33 +57,46 @@ The model predicts the four MBTI dimensions:
 MBTI labels are extracted from **Reddit user flairs**, and comments from each author are aggregated to build training samples.
 
 ---
-
 ## Pipeline
 
 ### 1. Scrape Reddit data
+
+```bash
 python data_pipeline/scrape_reddit_pullpush.py
+```
+
 ### 2. Build MBTI dataset
+
+```bash
 python data_pipeline/build_reddit_dataset.py
+```
+
 ### 3. Process data
+
+```bash
 python data_pipeline/process_data.py
+```
+
 ### 4. Train models
+
+```bash
 python models/train_tfidf_xgboost.py
 python models/train_nn_bert.py
 python models/fine_tune_bert.py
 python models/deberta_tuning.py
 python models/deberta_tuning_optuna.py
 python models/fine_tune_Mistral.py
-
-
+```
 
 ---
 
 ## Installation
 
-Python **3.11**
+```bash
+python3.11 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
-
-
+```
 ---
 
 ## Hardware
@@ -97,7 +110,7 @@ Development experiments used an **NVIDIA RTX 3090**.
 
 ## Data
 
-If the Reddit dataset is not included in the repository, you can:
+The Reddit dataset is not included in the repository, you can:
 
 - run the scraping pipeline
-- request the dataset from the project author
+- request the dataset from me
